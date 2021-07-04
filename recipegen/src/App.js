@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 import Recipe from './components/Recipe'
-require('dotenv/config')
+require('dotenv').config()
 
 function App() {
 
@@ -9,8 +9,9 @@ function App() {
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
 
-  const API_ID = '3ab45232'
-  const API_KEY = '273b1557ec3ed737313eae0acf35167c'
+  const x = process.env.API_ID
+  const y = process.env.API_KEY
+
 
   const searchHandler = e => {
       setSearch(e.target.value)
@@ -24,7 +25,7 @@ function App() {
 
    const getRecipes = async () => {
    
-     const response = await fetch(`https://api.edamam.com/search?q=${search}&app_id=${API_ID}&app_key=${API_KEY}`);
+     const response = await fetch(`https://api.edamam.com/search?q=${search}&app_id=${x}&app_key=${y}`);
      const data = await response.json();
      setRecipes(data.hits);
      console.log(recipes);
